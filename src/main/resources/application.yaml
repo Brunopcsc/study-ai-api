@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: exam-preparation-ai-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5433/study_ai_db
+    username: admin
+    password: admin
+    flyway:
+      enabled: true
+      locations: classpath:db/migration
