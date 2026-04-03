@@ -2,6 +2,11 @@ package com.bruno.study.ai.exam_preparation_ai_backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_quiz_question")
@@ -13,34 +18,24 @@ import lombok.*;
 public class QuizQuestion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @Column(name = "topic_id")
-    private Long topicId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "content_id", nullable = false)
+    private StudyContent studyContent;
 
-    @Column(name = "question_text")
+    @Column(name = "question_text", nullable = false, columnDefinition = "TEXT")
     private String questionText;
 
-    @Column(name = "question_a")
-    private String questionA;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "options", columnDefinition = "jsonb")
+    private List<String> options;
 
-    @Column(name = "question_b")
-    private String questionB;
+    @Column(name = "correct_answer_index", nullable = false)
+    private Integer correctAnswerIndex;
 
-    @Column(name = "question_c")
-    private String questionC;
-
-    @Column(name = "question_d")
-    private String questionD;
-
-    @Column(name = "question_e")
-    private String questionE;
-
-    @Column(name = "correct_option")
-    private String correctOption;
-
-    @Column()
+    @Column(name = "explanation", columnDefinition = "TEXT")
     private String explanation;
 
 }

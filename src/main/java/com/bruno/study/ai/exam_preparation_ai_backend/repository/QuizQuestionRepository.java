@@ -5,7 +5,9 @@ import com.bruno.study.ai.exam_preparation_ai_backend.model.QuizQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface QuizQuestionRepository extends JpaRepository<QuizQuestion, Long> {
+public interface QuizQuestionRepository extends JpaRepository<QuizQuestion, UUID> {
 
 }

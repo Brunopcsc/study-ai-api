@@ -1,14 +1,9 @@
-CREATE TABLE TB_QUIZ_QUESTION
-(
-    ID             BIGSERIAL PRIMARY KEY,
-    TOPIC_ID       BIGINT  NOT NULL,
-    QUESTION_TEXT  TEXT    NOT NULL,
-    OPTION_A       TEXT    NOT NULL,
-    OPTION_B       TEXT    NOT NULL,
-    OPTION_C       TEXT    NOT NULL,
-    OPTION_D       TEXT    NOT NULL,
-    OPTION_E       TEXT    NOT NULL,
-    CORRECT_OPTION CHAR(1) NOT NULL,
-    EXPLANATION    TEXT,
-    CONSTRAINT FK_QUIZ_TOPIC FOREIGN KEY (TOPIC_ID) REFERENCES TB_TOPIC (ID) ON DELETE CASCADE
+CREATE TABLE tb_quiz_question (
+  id UUID PRIMARY KEY,
+  content_id UUID NOT NULL,
+  question_text TEXT NOT NULL,
+  options JSONB NOT NULL,
+  correct_answer_index INTEGER NOT NULL,
+  explanation TEXT,
+  CONSTRAINT fk_study_content FOREIGN KEY (content_id) REFERENCES tb_study_content(id) ON DELETE CASCADE
 );

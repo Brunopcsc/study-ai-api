@@ -8,3 +8,11 @@ spring:
     flyway:
       enabled: true
       locations: classpath:db/migration
+
+  ai:
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY}
+        chat:
+          options:
+            model: gemini-3-flash-preview
